@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALDA - Semua Produk</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .search-bar {
+      margin: 20px 40px 10px 40px;
+      max-width: 300px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .keranjang-badge {
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ALDA</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="keranjang.html" id="keranjangLink">Keranjang</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+        <li><a href="akun.html">Akun</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-banner">
+    <h1>ALDA</h1>
+    <h4>Temukan inspirasi yang mencerminkan siapa kamu</h4>
+    <div class="button-group">
+      <a href="produk.html" class="nav-link">Semua Produk</a>
+      <a href="wanita.html" class="nav-link">Wanita</a>
+      <a href="pria.html" class="nav-link">Laki-laki</a>
+      <a href="sepatu.html" class="nav-link">Sepatu</a>
+      <a href="flash-sale.html" class="nav-link">Flash Sale</a>
+    </div>
+  </section>
+
+  <!-- 🔍 Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Cari produk...">
+  </div>
+
+  <section class="produk-section">
+    <h2>SEMUA PRODUK</h2>
+    <div class="filter-kategori">
+      <button data-kategori="Semua">Semua</button>
+      <button data-kategori="Kaus">Kaus Pria/Wanita</button>
+      <button data-kategori="Celana">Celana</button>
+      <button data-kategori="Kemeja">Kemeja</button>
+      <button data-kategori="Jaket">Jaket</button>
+      <button data-kategori="Dress">Dress</button>
+      <button data-kategori="Rok">Rok</button>
+      <button data-kategori="Sepatu">Sepatu</button>
+      <button data-kategori="Aksesoris">Aksesoris</button>
+    </div>
+    <div class="produk-list" id="produkList"></div>
+  </section>
+
+  <!-- Modal untuk beli produk -->
+  <div class="modal" id="productModal" style="display: none;">
+    <div class="modal-content">
+      <h3>Beli Produk di:</h3>
+      <div class="marketplace-links" id="modalLinks"></div>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+
+  <div id="notifikasi" class="notifikasi">Produk ditambahkan ke keranjang!</div>
+
+  <!-- Script -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Fitur pencarian
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const items = document.querySelectorAll(".produk-item");
+      items.forEach(item => {
+        const nama = item.querySelector("p")?.textContent.toLowerCase() || "";
+        item.style.display = nama.includes(query) ? "block" : "none";
+      });
+    });
+
+    // Badge keranjang
+    function updateKeranjangBadge() {
+      const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+      const link = document.getElementById("keranjangLink");
+      if (keranjang.length > 0) {
+        link.innerHTML = `Keranjang[${keranjang.length}]`;
+      } else {
+        link.textContent = "Keranjang";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", updateKeranjangBadge);
+    window.addEventListener("storage", updateKeranjangBadge);
+  </script>
+</body>
+</html>

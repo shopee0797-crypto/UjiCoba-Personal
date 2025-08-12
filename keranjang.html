@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang Belanja | ALDA</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .back-icon {
+      font-size: 20px;
+      margin-right: 16px;
+      color: #555;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+    .back-icon:hover {
+      background-color: #eee;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <a href="javascript:history.back()" class="back-icon" title="Kembali">⬅</a>
+      <div class="logo">ALDA</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a href="Bantuan.html">Bantuan</a></li>
+        <li><a href="akun.html">Akun</a></li>
+        <li><a href="keranjang.html" class="active">Keranjang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner" style="height: 180px; background-color: #f8f8f8; color: #333;">
+    <h1 style="font-size: 32px;">Keranjang Belanja</h1>
+    <h4 style="font-size: 16px; font-weight: normal;">Semua produk yang kamu pilih ada di sini</h4>
+  </section>
+
+  <section class="produk-section">
+    <h2>Daftar Produk di Keranjang</h2>
+    <div id="keranjangList" class="produk-list"></div>
+    <div id="keranjangKosong" style="text-align:center; padding: 2rem; display:none;">
+      Keranjang kamu masih kosong.
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h3>Link Pembelian</h3>
+      <div id="modalLinks" class="modal-links"></div>
+    </div>
+  </div>
+
+  <script>
+    const keranjangList = document.getElementById("keranjangList");
+    const keranjangKosong = document.getElementById("keranjangKosong");
+
+    function loadKeranjang() {
+      const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+      keranjangList.innerHTML = "";
+
+      if (keranjang.length === 0) {
+        keranjangKosong.style.display = "block";
+        return;
+      }
+
+      keranjangKosong.style.display = "none";
+
+      keranjang.forEach((produk, index) => {
+        const item = document.createElement("div");
+        item.className = "produk-item";
+
+        const img = document.createElement("img");
+        img.src = produk.gambar;
+        img.alt = produk.nama;
+        item.appendChild(img);
+
+        const title = document.createElement("p");
+        title.textContent = produk.nama;
+        item.appendChild(title);
+
+        const price = document.createElement("p");
+        price.textContent = produk.harga;
+        item.appendChild(price);
+
+        const buttonGroup = document.createElement("div");
+        buttonGroup.className = "button-group";
+
+        const beliBtn = document.createElement("button");
+        beliBtn.textContent = "Beli Sekarang";
+        beliBtn.onclick = () => showModal(produk.links);
+        buttonGroup.appendChild(beliBtn);
+
+        const hapusBtn = document.createElement("button");
+        hapusBtn.textContent = "Hapus";
+        hapusBtn.onclick = () => hapusDariKeranjang(index);
+        buttonGroup.appendChild(hapusBtn);
+
+        item.appendChild(buttonGroup);
+        keranjangList.appendChild(item);
+      });
+    }
+
+    function hapusDariKeranjang(index) {
+      let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+      keranjang.splice(index, 1);
+      localStorage.setItem("keranjang", JSON.stringify(keranjang));
+      loadKeranjang();
+    }
+
+    function showModal(links) {
+      const modal = document.getElementById("productModal");
+      const linkArea = document.getElementById("modalLinks");
+
+      if (!modal || !linkArea) return;
+
+      linkArea.innerHTML = "";
+
+      const marketplaces = {
+        shopee: "Shopee",
+        tokopedia: "Tokopedia",
+        zara: "ZARA",
+        uniqlo: "UNIQLO",
+        hnm: "H&M"
+      };
+
+      Object.keys(marketplaces).forEach(key => {
+        if (links[key]) {
+          const a = document.createElement('a');
+          a.href = links[key];
+          a.target = "_blank";
+          a.textContent = `Beli di ${marketplaces[key]}`;
+          linkArea.appendChild(a);
+        }
+      });
+
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("productModal");
+      if (modal) modal.style.display = "none";
+    }
+
+    window.addEventListener("DOMContentLoaded", loadKeranjang);
+  </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outfit Finder — Temukan Gayamu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  z-index: 1000;
+  padding: 10px 5px;
+}
+
+nav .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #d4a373;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #d4a373;
+}
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+      color: #fff;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 0;
+    }
+
+    .hero h1, .hero p, .cta-button {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #eee;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .cta-button {
+      padding: 12px 24px;
+      background-color: #d4a373;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+
+    .feature {
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #d4a373;
+    }
+
+    .feature p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .save-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .save-button:hover {
+      transform: scale(1.2);
+    }
+
+    .save-button.saved {
+      color: #e63946;
+      animation: pulse 0.4s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+
+    .categories {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .categories h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    .categories p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #f0f0f0;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Outfit Finder</div>
+    <ul>
+      <li><a href="produk.html">Produk</a></li>
+      <li><a href="Tentang.html">Tentang</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="akun.html">Akun</a></li>
+
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Gaya bukan sekadar tren</h1>
+  <p>Tapi cerita yang kamu pilih tiap pagi. Temukan inspirasi yang mencerminkan siapa kamu.</p>
+  <li><a href="produk.html" class="cta-button">Temukan Gayamu</a></li>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <h3>Simpan Inspirasi</h3>
+    <p>Bookmark outfit favoritmu dan bangun gaya personal yang konsisten.</p>
+  </div>
+  <div class="feature">
+    <h3>ALDA</h3>
+    <p>Cari outfit berdasarkan mood, warna, atau filosofi gaya hidupmu.</p>
+  </div>
+  <div class="feature">
+    <h3>Marketplace Terhubung</h3>
+    <p>Langsung beli dari Shopee, Tokopedia, atau brand lokal pilihan.</p>
+  </div>
+</section>
+
+<section class="categories">
+  <h2>Eksplorasi Gaya</h2>
+  <p>Kategori outfit: kasual, formal, edgy, minimalis, dan lainnya.</p>
+</section>
+
+<footer>
+  &copy; 2025 Outfit Finder. Dibuat dengan semangat inspirasi dan gaya hidup.
+</footer>
+
+<script>
+  // Slideshow background
+  const heroSection = document.querySelector('.hero');
+  const images = [
+    'https://freakins.com/cdn/shop/files/DSC04638.jpg?v=1750064840',
+    'https://i.pinimg.com/736x/06/d1/17/06d1175171292ddf7313b8fc02cafea4.jpg',
+    'https://i.pinimg.com/736x/1f/1d/5f/1f1d5f3d14e4cf764e91e020ce88d553.jpg'
+  ];
+  let currentIndex = 0;
+
+  function changeBackground() {
+    heroSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+    currentIndex = (currentIndex + 1) % images.length;
+  }
+
+  changeBackground();
+  setInterval(changeBackground, 5000);
+
+  // Save button logic
+  function toggleSave(btn) {
+    btn.classList.toggle('saved');
+    btn.textContent = btn.classList.contains('saved') ? '💖' : '❤️';
+    showToast(btn.classList.contains('saved') ? 'Inspirasi disimpan ✨' : 'Inspirasi dihapus ❌');
+  }
+
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.right = '20px';
+    toast.style.background = 'rgba(0,0,0,0.8)';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 20px';
+    toast.style.borderRadius = '8px';
+    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.fontFamily = 'Inter, sans-serif';
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.3s ease';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.style.opacity = '1', 100);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
